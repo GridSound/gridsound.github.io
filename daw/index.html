@@ -1,0 +1,32 @@
+<pre>
+Hi :)
+
+
+The GridSound's DAW is moving from  <b>https://gridsound.github.io/daw</b>  --to->  <b><a href="https://gridsound.com/daw">https://gridsound.com/daw</a></b>
+
+
+Changing of domain (URL) means losing what you have in your browser's localStorage for <b>gridsound.github.io</b>, there is ONE localStorage per domain.
+So if you had some cool local compositions you want to keep, copy the content of the box below...
+
+<textarea readonly style="width: 540px; height: 160px;"></textarea>
+
+... and go to <a href="https://gridsound.com/daw" target="_blank" rel="noopener">https://gridsound.com/daw</a> and paste it in the JavaScript console.
+
+
+To open the JS console you have to press <b>F12</b> then go to the <b>Console</b> panel, then <b>ctrl+v</b> and press <b>enter</b>,
+after that you can refresh and find your compositions as usual.
+
+If you have any problem during this operation, you can send an email to <b>contact@gridsound.com</b>
+</pre>
+
+<script>
+const textarea = document.querySelector( "textarea" ),
+	cmps = Object.entries( localStorage );
+
+cmps.forEach( kv => kv[ 1 ] = btoa( kv[ 1 ] ) );
+
+textarea.onfocus = () => { textarea.select() };
+textarea.value =
+`${ JSON.stringify( cmps ) }
+.forEach( kv => localStorage.setItem( kv[ 0 ], atob( kv[ 1 ] ) ) );`;
+</script>
